@@ -43,15 +43,6 @@ body section h2 {
   margin-bottom: 1rem;
 }
 
-#sec1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 30px;
-}
-#sec1 div {
-  width: 50%;
-}
 #sec1 h1 {
   width: auto;
   font-family: "DM Serif Display";
@@ -63,10 +54,6 @@ body section h2 {
 }
 #sec1 p {
   margin-bottom: 1rem;
-}
-#sec1 iframe {
-  border-radius: 12px;
-  height: 40vh;
 }
 #sec1 a {
   -webkit-user-select: none;
@@ -93,25 +80,18 @@ body section h2 {
   height: max-content;
 }
 
+@media (max-width: 700px) {
+  :root {
+    font-size: 4vw;
+  }
+}
 @media (max-width: 800px) {
   :root {
     font-size: 3.5vw;
-  }
-  #sec1 {
-    flex-direction: column;
-  }
-  #sec1 div {
-    width: 100%;
   }
 }
 @media (max-width: 1200px) {
   :root {
     font-size: 2.8vw;
-  }
-  #sec1 {
-    flex-direction: column;
-  }
-  #sec1 div {
-    width: 100%;
   }
 }/*# sourceMappingURL=style.css.map */
