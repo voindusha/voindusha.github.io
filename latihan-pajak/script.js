@@ -67,6 +67,9 @@ const validatePPH22 = () => {
       jumlahBener++
     } else if(input.value > 0){
       tulisan.classList.add('salah')
+    } else{
+      tulisan.classList.remove('bener')
+      tulisan.classList.remove('salah')
     }
   });
 }
@@ -179,9 +182,14 @@ const validateTarifLain = () => {
     const tulisan = document.querySelector(`#tarifLain-tr-${i + 1} td:nth-child(1)`)
     if(input == e[3] &&jenis == e[1] && sifat == e[4]) {
       tulisan.classList.add('bener')
+      tulisan.classList.remove('salah')
     } else if(input > 0) {
       tulisan.classList.add('salah')
+      tulisan.classList.remove('bener')
       console.log(`jawaban: ${e[3]}, sifat: ${e[4]}, jenis: ${e[1]}\ninput: ${input}, sifat: ${sifat}, jenis: ${jenis}`)
+    } else{
+      tulisan.classList.remove('bener')
+      tulisan.classList.remove('salah')
     }
   })
 }
