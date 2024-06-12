@@ -137,7 +137,7 @@ const printTarifLain = () => {
       <option value="PPh 4(2)">PPh 4(2)</option>
       <option value="PPh 23">PPh 23</option>
       <option value="PPh 26">PPh 26</option>
-      <option value="PPH 21">PPh 21</option>
+      <option value="PPh 21">PPh 21</option>
       </select></td>
       <td><input type="number" id="tarifLain-${i + 1}"></td>
       <td><select><option value="Final">Final</option><option value="Tidak Final">Tidak Final</option></select></td>
