@@ -64,9 +64,10 @@ const validatePPH22 = () => {
     const tulisan = document.querySelector(`#pph22-tr-${i + 1} td:nth-child(1)`)
     if(input.value == element[1]) {
       tulisan.classList.add('bener')
-      jumlahBener++
+      tulisan.classList.remove('salah')
     } else if(input.value > 0){
       tulisan.classList.add('salah')
+      tulisan.classList.remove('bener')
     } else{
       tulisan.classList.remove('bener')
       tulisan.classList.remove('salah')
