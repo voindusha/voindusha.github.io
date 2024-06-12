@@ -40,13 +40,13 @@ const tarif22 = [
 
 let randomedTarif22
 
-const printPPH22 = () => {
+const printPPh22 = () => {
   tarif22.sort(() => Math.random() - 0.5)
   const sec1 = document.querySelector('#tarif22')
   sec1.innerHTML = ''
   for (let i = 0; i < tarif22.length; i++) {
     const tr = document.createElement('tr')
-    tr.id = `pph22-tr-${i + 1}`
+    tr.id = `PPh22-tr-${i + 1}`
     tr.innerHTML = `
       <td>${tarif22[i][0]}</td>
       <td><input type="number" id="PPh22-${i + 1}"></td>
@@ -55,13 +55,13 @@ const printPPH22 = () => {
   }
 }
 
-printPPH22()
+printPPh22()
 
-const validatePPH22 = () => {
+const validatePPh22 = () => {
   let jumlahBener
   tarif22.forEach((element, i) => {
     const input = document.querySelector(`#PPh22-${i + 1}`)
-    const tulisan = document.querySelector(`#pph22-tr-${i + 1} td:nth-child(1)`)
+    const tulisan = document.querySelector(`#PPh22-tr-${i + 1} td:nth-child(1)`)
     if(input.value == element[1]) {
       tulisan.classList.add('bener')
       tulisan.classList.remove('salah')
@@ -77,7 +77,7 @@ const validatePPH22 = () => {
 document.addEventListener('keydown', (e) => {
   if(document.activeElement.id.match(/PPh22/)) {
     if(e.key == 'Enter') {
-      validatePPH22()
+      validatePPh22()
     }
     if(e.key == 'ArrowUp') {
       e.preventDefault()
@@ -103,8 +103,8 @@ const tarifLain = [
   ["Bunga Utang obligasi", "PPh 4(2)", "SP LN", 10, "Final"],
   ["Bunga simpanan di bank", "PPh 4(2)", "WP OP, WP Badan", 20, "Final"],
   ["Bunga selain yang dikenakan PPh 4(2)", "PPh 23", "WP OP, WP Badan", 15, "Tidak Final"],
-  ["Pendapatan sewa tanah dan/atau bangunan", "PPH 4(2)", "WP OP, WP Badan", 10, "Final"],
-  ["Pendapatan sewa selain tanah dan/atau bangunan", "PPH 23", "WP OP, WP Badan", 15, "Tidak Final"],
+  ["Pendapatan sewa tanah dan/atau bangunan", "PPh 4(2)", "WP OP, WP Badan", 10, "Final"],
+  ["Pendapatan sewa selain tanah dan/atau bangunan", "PPh 23", "WP OP, WP Badan", 15, "Tidak Final"],
   ["Hadiah undian", "PPh 4(2)", "WP OP, WP Badan", 25, "Final"],
   ["Hadiah penghargaan", "PPh 21", "WP OP", 17, "Tidak Final"],
   ["Hadiah penghargaan", "PPh 26", "SP LN (OP)", 20, "Final"],
