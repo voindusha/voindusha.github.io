@@ -71,19 +71,117 @@ const validatePPH22 = () => {
   });
 }
 document.addEventListener('keydown', (e) => {
-  if(e.key == 'Enter') {
-    validatePPH22()
-  }
-  if(e.key == 'ArrowUp') {
-    e.preventDefault()
-    let focusedNum = parseInt(document.activeElement.id.split('-')[1])
-    const prev = document.querySelector(`#PPh22-${focusedNum - 1}`)
-    prev.focus()
-  }
-  if(e.key == 'ArrowDown') {
-    e.preventDefault()
-    let focusedNum = parseInt(document.activeElement.id.split('-')[1])
-    const prev = document.querySelector(`#PPh22-${focusedNum + 1}`)
-    prev.focus()
+  if(document.activeElement.id.match(/PPh22/)) {
+    if(e.key == 'Enter') {
+      validatePPH22()
+    }
+    if(e.key == 'ArrowUp') {
+      e.preventDefault()
+      let focusedNum = parseInt(document.activeElement.id.split('-')[1])
+      const prev = document.querySelector(`#PPh22-${focusedNum - 1}`)
+      prev.focus()
+    }
+    if(e.key == 'ArrowDown') {
+      e.preventDefault()
+      let focusedNum = parseInt(document.activeElement.id.split('-')[1])
+      const prev = document.querySelector(`#PPh22-${focusedNum + 1}`)
+      prev.focus()
+    }
   }
 })
+
+const tarifLain = [
+  ["Dividen DN, dan Dividen LN (yang tidak diinvestasikan di Indonesia)", "PPh 4(2)", "WP OP", 10, "Final"],
+  ["Dividen LN (yang tidak diinvestasikan di Indonesia)", "PPh 23", "Badan, BUT", 15, "Tidak Final"],
+  ["Dividen DN", "PPh 26", "SP LN", 20, "Final"],
+  ["Bunga simpanan koperasi", "PPh 4(2)", "Koperasi", 10, "Final"],
+  ["Bunga Utang obligasi", "PPh 4(2)", "WP OP, WP Badan", 10, "Final"],
+  ["Bunga Utang obligasi", "PPh 4(2)", "SP LN", 10, "Final"],
+  ["Bunga simpanan di bank", "PPh 4(2)", "WP OP, WP Badan", 20, "Final"],
+  ["Bunga selain yang dikenakan PPh 4(2)", "PPh 23", "WP OP, WP Badan", 15, "Tidak Final"],
+  ["Pendapatan sewa tanah dan/atau bangunan", "PPH 4(2)", "WP OP, WP Badan", 10, "Final"],
+  ["Pendapatan sewa selain tanah dan/atau bangunan", "PPH 23", "WP OP, WP Badan", 15, "Tidak Final"],
+  ["Hadiah undian", "PPh 4(2)", "WP OP, WP Badan", 25, "Final"],
+  ["Hadiah penghargaan", "PPh 21", "WP OP", 17, "Tidak Final"],
+  ["Hadiah penghargaan", "PPh 26", "SP LN (OP)", 20, "Final"],
+  ["Hadiah undian", "PPh 26", "SP LN (OP)", 20, "Final"],
+  ["Hadiah penghargaan", "PPh 23", "WP Badan", 15, "Tidak Final"],
+  ["Pekerjaan Konstruksi", "PPh 4(2)", "WP Badan, sertifikat kecil", 1.75, "Final"],
+  ["Pekerjaan Konstruksi", "PPh 4(2)", "WP Badan, tidak ada sertifikat kecil", 4, "Final"],
+  ["Pekerjaan Konstruksi", "PPh 4(2)", "WP Badan, keadaan lain", 2.65, "Final"],
+  ["Pekerjaan Konstruksi Terintegrasi", "PPh 4(2)", "WP Badan, ada sertifikat", 2.65, "Final"],
+  ["Pekerjaan Konstruksi Terintegrasi", "PPh 4(2)", "WP Badan, tidak ada sertifikat", 4, "Final"],
+  ["Jasa konsultasi konstruksi", "PPh 4(2)", "WP Badan, ada sertfikat", 3.5, "Final"],
+  ["Jasa konsultasi konstruksi", "PPh 4(2)", "WP Badan, tidak ada sertfikat", 6, "Final"],
+  ["Pekerjaan Konstruksi", "PPh 4(2)", "WP OP, sertifikat kompetensi", 1.75, "Final"],
+  ["Pekerjaan Konstruksi", "PPh 4(2)", "WP OP, tidak ada sertifikat", 4, "Final"],
+  ["Pekerjaan Konstruksi", "PPh 4(2)", "WP OP, keadaan lain", 2.65, "Final"],
+  ["Jasa konsultasi konstruksi", "PPh 4(2)", "WP OP, ada sertfikat", 3.5, "Final"],
+  ["Jasa konsultasi konstruksi", "PPh 4(2)", "WP OP, tidak ada sertfikat", 6, "Final"],
+  
+]
+
+const printTarifLain = () => {
+  tarifLain.sort(() => Math.random() - 0.5)
+  document.querySelector('#tarifLain').innerHTML = ''
+  const tr = document.createElement('tr')
+  tr.innerHTML = `<td>Tarif Lain</td><td>Subjek Pajak</td><td>PPh</td><td>Tarif (tarif pasal 17 ditulis "17")</td><td>Sifat</td>`
+  document.querySelector('#tarifLain').appendChild(tr)
+  tarifLain.forEach((element, i) => {
+    const tr = document.createElement('tr')
+    tr.id = `tarifLain-tr-${i + 1}`
+    tr.innerHTML = `
+      <td>${element[0]}</td>
+      <td>${element[2]}</td>
+      <td><select>
+      <option value="PPh 4(2)">PPh 4(2)</option>
+      <option value="PPh 23">PPh 23</option>
+      <option value="PPh 26">PPh 26</option>
+      <option value="PPH 21">PPh 21</option>
+      </select></td>
+      <td><input type="number" id="tarifLain-${i + 1}"></td>
+      <td><select><option value="Final">Final</option><option value="Tidak Final">Tidak Final</option></select></td>
+    `
+    document.querySelector('#tarifLain').appendChild(tr)
+  });
+}
+
+printTarifLain()
+
+document.addEventListener('keydown', (e) => {
+  if(e.key == 'Enter') {
+    validateTarifLain()
+    console.log('enter')
+  }
+  if(document.activeElement.id.match(/tarifLain/)) {
+    if(e.key == 'ArrowUp') {
+      e.preventDefault()
+      let focusedNum = parseInt(document.activeElement.id.split('-')[1])
+      const prev = document.querySelector(`#tarifLain-${focusedNum - 1}`)
+      prev.focus()
+    }
+    if(e.key == 'ArrowDown') {
+      e.preventDefault()
+      let focusedNum = parseInt(document.activeElement.id.split('-')[1])
+      const prev = document.querySelector(`#tarifLain-${focusedNum + 1}`)
+      prev.focus()
+    }
+  }
+})
+
+const validateTarifLain = () => {
+  tarifLain.forEach((e, i) => {
+    const input = document.querySelector(`#tarifLain-${i + 1}`).value
+    const jenisEl = document.querySelector(`#tarifLain-tr-${i + 1} td:nth-child(3) select`)
+    const sifatEl = document.querySelector(`#tarifLain-tr-${i + 1} td:nth-child(5) select`)
+    const jenis = jenisEl.options[jenisEl.selectedIndex].value
+    const sifat = sifatEl.options[sifatEl.selectedIndex].value
+    const tulisan = document.querySelector(`#tarifLain-tr-${i + 1} td:nth-child(1)`)
+    if(input == e[3] &&jenis == e[1] && sifat == e[4]) {
+      tulisan.classList.add('bener')
+    } else if(input > 0) {
+      tulisan.classList.add('salah')
+      console.log(`jawaban: ${e[3]}, sifat: ${e[4]}, jenis: ${e[1]}\ninput: ${input}, sifat: ${sifat}, jenis: ${jenis}`)
+    }
+  })
+}
