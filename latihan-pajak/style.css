@@ -1,0 +1,33 @@
+.salah{
+  color: red;
+}
+
+.bener{
+  color: green;
+}
+#tarif22{
+  border-collapse: collapse;
+}
+#tarif22 tr td{
+  border: 1px solid black;
+  padding: 10px;
+}
+#tarif22 tr td:nth-child(2){
+  padding:0;
+}
+input{
+  width: 90%;
+  height: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 20px;
+  border: none;
+}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
